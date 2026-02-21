@@ -9,18 +9,134 @@
       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
    <script src="https://kit.fontawesome.com/f9143a9097.js" crossorigin="anonymous"> 
     </script>
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Epilogue">
+<style>
+    /* scene depth */
+.scene{
+  perspective:1200px;
+}
 
+/* container rotates */
+.orbit{
+  position:relative;
+  width:500px;
+  height:500px;
+  transform-style:preserve-3d;
+  animation: spin 18s linear infinite;
+}
+
+/* animation */
+@keyframes spin{
+  from{ transform: rotateY(0deg); }
+  to{ transform: rotateY(360deg); }
+}
+
+/* each photo positioned in circle */
+.photo{
+  position:absolute;
+  width:120px;
+  height:120px;
+  left:50%;
+  top:50%;
+  transform-style:preserve-3d;
+  transform-origin:center;
+}
+
+/* individual placements */
+.p1{ transform: rotateY(0deg) translateZ(170px) translate(-50%,-50%); }
+.p2{ transform: rotateY(90deg) translateZ(170px) translate(-50%,-50%); }
+.p3{ transform: rotateY(180deg) translateZ(170px) translate(-50%,-50%); }
+.p4{ transform: rotateY(270deg) translateZ(170px) translate(-50%,-50%); }
+
+</style>
 </head>
-<body >
-    <header class="bg-[url(images/firstbackground.jpeg)] bg-no no-repeat bg-cover bg-center relative py-10 px-0 w-full h-screen overflow-hidden ">
-        <h1 class="text-3xl md:text-7xl text-white text-center font-extrabold">Happy Birthday Oppa mii,<br> Our Money Man</h1>
-      <div class="w-sm md:w-screen h-screen ">
-        <img src="./images/firstpic.png" alt="image" class=" h-full"></div>
+
+<body class="font-[Epilogue]">
+      <!-- 🎵 BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="./mohammed_channi_yiruma-river-flows-in-you.mp3" type="audio/mpeg">
+</audio>
+    <header class="bg-[url(images/firstbackground.jpeg)] bg-no-repeat bg-cover bg-center relative py-10 px-0 w-full h-screen overflow-hidden text-center flex flex-col items-center ">
+        <h1 class="text-3xl md:text-7xl text-white  font-extrabold">Happy Birthday Oppa mii,<br> Our Money Man</h1>
+        <p class="opacity-80 mb-10 max-w-md text-white font-extrabold text-xl">
+        A small space made with love just for you. <br>
+        Tap anywhere to begin.</p>
+      <div class="w-xs md:w-screen absolute left-0 bottom-0 ">
+        <img src="./images/firstpic.png" alt="image" class="h-full"></div>
     </header>
 
-    <section>
-        <h2>dohfjksihe nvbhjjsdiikfnofiobufg</h2>
+    <section class="text-center p-6 flex flex-col justify-between items-center gap-5">
+        <h2 class="text-4xl font-extrabold text-yellow-800">From Our Hearts</h2>
+        <p class="text-2xl font-bold text-gray-600">You mean the world to us. We are so proud of having you as one of us. We love you more than words can say.</p>
+
+    <!-- 🎧 AUDIO MESSAGE -->
+<div class="mb-10 w-full max-w-md">
+<h2 class="text-xl font-semibold mb-3 text-yellow-800">Listen to our message ❤️</h2>
+
+<audio id="voiceMessage" controls class="w-full">
+  <source src="./TxC-Ft-Davido-Shoday-Scotts-Maphuma-Zlatan-Al-Xapo-Nakupenda-(TrendyBeatz.com).mp3" type="audio/mpeg">
+</audio>
+</div>
     </section>
-   
+
+<section class="bg-gradient-to-b from-gray-500 via-black to-gray-500 h-screen flex flex-col items-center justify-center text-white">
+
+<div class="scene">
+
+  <div class="orbit">
+
+    <img src="./images/image 14.png" class="photo p1 object-cover rounded-xl shadow-2xl border-2 border-white">
+    <img src="./images/image 15.png" class="photo p2 object-cover rounded-xl shadow-2xl border-2 border-white">
+    <img src="./images/image 16.png" class="photo p3 object-cover rounded-xl shadow-2xl border-2 border-white">
+    <img src="./images/image 17.png" class="photo p4 object-cover rounded-xl shadow-2xl border-2 border-white">
+    <img src="./images/image 18.png" class="photo p5 object-cover rounded-xl shadow-2xl border-2 border-white">
+
+  </div>
+
+</div>
+</section>
+
+    <!-- 🎥 VIDEO MESSAGE -->
+<div class="w-full max-w-md mb-10 pt-5 flex flex-col items-center">
+<h2 class="text-xl font-semibold mb-3">Watch this 🎥</h2>
+
+<video id="birthdayVideo" controls class="w-full rounded-2xl shadow-2xl items-center">
+  <source src="./mixkit-portrait-of-a-smiling-little-baby-49974-hd-ready.mp4" type="video/mp4">
+</video>
+</div>
+
+<p class="opacity-70 text-sm text-center font-bold">Made with love 💜</p>
+
+
+<script>
+const bg = document.getElementById("bgMusic");
+const video = document.getElementById("video");
+const audio = document.getElementById("audio");
+
+let started = false;
+
+/* TAP ANYWHERE TO START MUSIC (mobile friendly) */
+document.body.addEventListener("click", () => {
+  if(!started){
+    bg.volume = 0.35;
+    bg.play().catch(()=>{});
+    started = true;
+  }
+});
+
+/* helper functions */
+function pauseBG(){ if(!bg.paused) bg.pause(); }
+function resumeBG(){ if(started) bg.play().catch(()=>{}); }
+
+/* VIDEO EVENTS */
+video.addEventListener("play", pauseBG);
+video.addEventListener("pause", resumeBG);
+video.addEventListener("ended", resumeBG);
+
+/* AUDIO EVENTS */
+audio.addEventListener("play", pauseBG);
+audio.addEventListener("pause", resumeBG);
+audio.addEventListener("ended", resumeBG);
+</script>
 </body>
 </html>
