@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oppa mii-Money Man</title>
-     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Oppa mii ❤️</title>
+     <link rel="icon" type="image/png" sizes="32x32" href="./images/firstpic.png">
 
       <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
    <script src="https://kit.fontawesome.com/f9143a9097.js" crossorigin="anonymous"> 
@@ -48,6 +48,8 @@
 .p3{ transform: rotateY(180deg) translateZ(170px) translate(-50%,-50%); }
 .p4{ transform: rotateY(270deg) translateZ(170px) translate(-50%,-50%); }
 
+*{margin:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow-x:hidden;}
 </style>
 </head>
 
@@ -56,9 +58,9 @@
 <audio id="bgMusic" loop>
   <source src="./mohammed_channi_yiruma-river-flows-in-you.mp3" type="audio/mpeg">
 </audio>
-    <header class="bg-[url(images/firstbackground.jpeg)] bg-no-repeat bg-cover bg-center relative py-10 px-0 w-full h-screen overflow-hidden text-center flex flex-col items-center ">
-        <h1 class="text-3xl md:text-7xl text-white  font-extrabold">Happy Birthday Oppa mii,<br> Our Money Man</h1>
-        <p class="opacity-80 mb-10 max-w-md text-white font-extrabold text-xl">
+    <header class="bg-[url(images/firstbackground.jpeg)] bg-no-repeat bg-cover bg-center relative w-full min-h-[75svh] md:min-h-[100svh] overflow-hidden text-center flex flex-col items-center pt-5">
+        <h1 class="text-3xl md:text-7xl text-white font-extrabold ">Happy Birthday Oppa mii,<br> Our Money Man</h1>
+        <p class="mb-10 max-w-md text-white font-extrabold text-xl">
         A small space made with love just for you. <br>
         Tap anywhere to begin.</p>
       <div class="w-xs md:w-screen absolute left-0 bottom-0 ">
@@ -71,15 +73,15 @@
 
     <!-- 🎧 AUDIO MESSAGE -->
 <div class="mb-10 w-full max-w-md">
-<h2 class="text-xl font-semibold mb-3 text-yellow-800">Listen to our message ❤️</h2>
+<h2 class="text-xl font-semibold mb-3 text-yellow-800">Listen to this ❤️</h2>
 
-<audio id="voiceMessage" controls class="w-full">
-  <source src="./TxC-Ft-Davido-Shoday-Scotts-Maphuma-Zlatan-Al-Xapo-Nakupenda-(TrendyBeatz.com).mp3" type="audio/mpeg">
+<audio id="audio" controls class="w-full">
+  <source src="./Happy birthday.m4a" type="audio/mpeg">
 </audio>
 </div>
     </section>
 
-<section class="bg-gradient-to-b from-gray-500 via-black to-gray-500 h-screen flex flex-col items-center justify-center text-white">
+<section class="bg-gradient-to-b from-gray-500 via-black to-gray-500 min-h-[50svh] flex flex-col items-center justify-center text-white">
 
 <div class="scene">
 
@@ -97,12 +99,14 @@
 </section>
 
     <!-- 🎥 VIDEO MESSAGE -->
-<div class="w-full max-w-md mb-10 pt-5 flex flex-col items-center">
-<h2 class="text-xl font-semibold mb-3">Watch this 🎥</h2>
-
-<video id="birthdayVideo" controls class="w-full rounded-2xl shadow-2xl items-center">
-  <source src="./mixkit-portrait-of-a-smiling-little-baby-49974-hd-ready.mp4" type="video/mp4">
-</video>
+     <div class="relative w-full h-[400px] flex gap-25 pt-3">
+  
+  <video id="video" controls 
+    class="absolute inset-0 w-full h-full object-contain"
+   loop >
+   
+    <source src="./birthdayvideo.MOV" type="video/mp4">
+  </video>
 </div>
 
 <p class="opacity-70 text-sm text-center font-bold">Made with love 💜</p>
@@ -127,6 +131,11 @@ document.body.addEventListener("click", () => {
 /* helper functions */
 function pauseBG(){ if(!bg.paused) bg.pause(); }
 function resumeBG(){ if(started) bg.play().catch(()=>{}); }
+
+video.addEventListener("play", ()=>{
+  video.volume = 1.0;   // <-- here
+  bg.pause();
+})
 
 /* VIDEO EVENTS */
 video.addEventListener("play", pauseBG);
